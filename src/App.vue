@@ -8,7 +8,11 @@ export default {
   },
   data() {
     return {
-      glitchText: '$$$',
+      glitchText: [
+        { char: '$', key: 0 },
+        { char: '$', key: 1 },
+        { char: '$', key: 2 }
+      ],
       animationInterval: null,
       glitchIndex: 0 // Track which position shows special character
     }
@@ -30,14 +34,23 @@ export default {
       ]
 
       this.animationInterval = setInterval(() => {
-        this.glitchText = Array.from({ length: 3 }, (_, index) => {
+        this.glitchText = this.glitchText.map((item, index) => {
           // Only the position at glitchIndex shows its special character
           // The other positions show the correct letter
-          if (index === this.glitchIndex) {
-            return letters[index].special
+          const newChar = index === this.glitchIndex
+            ? letters[index].special
+            : letters[index].correct
+
+          // Only update if character changed
+          if (newChar !== item.char) {
+            return {
+              char: newChar,
+              // Only increment key (trigger animation) when changing TO special character
+              key: index === this.glitchIndex ? item.key + 3 : item.key
+            }
           }
-          return letters[index].correct
-        }).join('')
+          return item
+        })
 
         // Move to next position
         this.glitchIndex = (this.glitchIndex + 1) % 3
@@ -50,7 +63,11 @@ export default {
 <template>
   <div class="app">
     <main class="hero">
-      <h1>Your bull<span class="glitch">{{ glitchText }}</span>t vibe-coded app is going to break in production.</h1>
+      <h1>Your bull<span class="glitch"><span
+          v-for="item in glitchText"
+          :key="item.key"
+          class="glitch-char"
+        >{{ item.char }}</span></span>t vibe-coded app is going to break in production.</h1>
       <h2>We can keep that from happening.</h2>
     </main>
 
@@ -91,10 +108,38 @@ export default {
 
     .glitch {
       display: inline-block;
-      background: $gradient-primary;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      perspective: 1000px;
+
+      .glitch-char {
+        display: inline-block;
+        min-width: 0.5em; // Reserve space for transitions
+        text-align: center;
+        animation: flip3d 0.6s ease-in-out;
+        transform-style: preserve-3d;
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    @keyframes flip3d {
+      0% {
+        transform: rotateX(0deg) scaleX(1);
+        opacity: 1;
+      }
+      50% {
+        transform: rotateX(90deg) scaleX(0.3);
+        opacity: 0;
+      }
+      51% {
+        transform: rotateX(90deg) scaleX(0.3);
+        opacity: 0;
+      }
+      100% {
+        transform: rotateX(0deg) scaleX(1);
+        opacity: 1;
+      }
     }
   }
 
