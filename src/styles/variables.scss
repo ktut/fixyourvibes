@@ -11,14 +11,14 @@ $border-secondary: #c0c0c0;
 $border-focus: #666666;
 
 // Text colors
-$text-primary: #000000;
+$text-primary: #333;
 $text-secondary: #666666;
 $text-tertiary: #999999;
 $text-white: #ffffff;
 
 // Gradient colors (now using greys)
-$gradient-primary: linear-gradient(135deg, #666666, #888888, #999999);
-$gradient-button: linear-gradient(135deg, #666666, #888888);
+$gradient-primary: linear-gradient(135deg, #1e1e1e, #323232);
+$gradient-button: linear-gradient(135deg, #1c1c1c, #363636);
 
 // Grey color values
 $color-grey-dark: #666666;
