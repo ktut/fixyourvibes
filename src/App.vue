@@ -67,7 +67,7 @@ export default {
           v-for="item in glitchText"
           :key="item.key"
           class="glitch-char"
-        >{{ item.char }}</span></span>t vibe-coded app is going to break in production.</h1>
+        >{{ item.char }}</span></span>t <br class="break-mobile"/>vibe-coded app <br class="break-mobile"/>is going to break in production.</h1>
       <h2>We can keep that from happening.</h2>
     </main>
 
@@ -90,14 +90,27 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: $spacing-md;
   text-align: center;
   max-width: $width-hero-max;
   margin: 0 auto;
+  @media (min-width: 768px) {
+    align-items: center;
+  }
+
+  h1,
+  h2 {
+    text-align: left;
+    @media (min-width: 768px) {
+      text-align: center;
+      .break-mobile {
+        display: none;
+      }
+    }
+  }
 
   h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 6vw, 6rem);
     font-weight: 800;
     margin-bottom: $spacing-sm;
     line-height: 1.2;
