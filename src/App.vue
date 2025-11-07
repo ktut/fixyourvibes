@@ -23,10 +23,16 @@ export default {
   },
   methods: {
     startAnimation() {
+      const correctLetters = ['s', 'h', 'i', 't']
       this.animationInterval = setInterval(() => {
-        this.glitchText = Array.from({ length: 4 }, () =>
-          this.animatedChars[Math.floor(Math.random() * this.animatedChars.length)]
-        ).join('')
+        this.glitchText = Array.from({ length: 4 }, (_, index) => {
+          // 25% chance to show the correct letter in its proper place
+          if (Math.random() < 0.25) {
+            return correctLetters[index]
+          }
+          // Otherwise show a random character from animatedChars
+          return this.animatedChars[Math.floor(Math.random() * this.animatedChars.length)]
+        }).join('')
       }, 400)
     }
   }
