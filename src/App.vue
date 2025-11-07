@@ -68,7 +68,7 @@ export default {
           :key="item.key"
           class="glitch-char"
         >{{ item.char }}</span></span>t <br class="break-mobile"/>vibe-coded app <br class="break-mobile"/>is going to break in production.</h1>
-      <h2>We can keep that from happening.</h2>
+      <h2>Let’s not let that happen.</h2>
     </main>
 
     <ContactForm />
