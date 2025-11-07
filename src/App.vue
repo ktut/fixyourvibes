@@ -14,16 +14,20 @@ export default {
         { char: 'i', key: 2 }
       ],
       animationInterval: null,
-      glitchIndex: 0 // Track which position shows special character
+      glitchIndex: 0, // Track which position shows special character
+      logoInverted: false // Track if logo should be inverted
     }
   },
   mounted() {
     this.startAnimation()
+    window.addEventListener('scroll', this.handleScroll)
+    this.handleScroll() // Check initial state
   },
   beforeUnmount() {
     if (this.animationInterval) {
       clearInterval(this.animationInterval)
     }
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     startAnimation() {
@@ -55,6 +59,31 @@ export default {
         // Move to next position
         this.glitchIndex = (this.glitchIndex + 1) % 3
       }, 3000)
+    },
+    handleScroll() {
+      // Check if we're scrolled into a dark section (about-section)
+      const aboutSection = document.querySelector('.about-section')
+      if (!aboutSection) {
+        this.logoInverted = false
+        return
+      }
+
+      const aboutRect = aboutSection.getBoundingClientRect()
+      const logoElement = this.$refs.logo
+      if (!logoElement) return
+
+      const logoRect = logoElement.getBoundingClientRect()
+
+      // Check if logo overlaps with about section
+      const isOverlapping = logoRect.bottom > aboutRect.top && logoRect.top < aboutRect.bottom
+
+      this.logoInverted = isOverlapping
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }
@@ -62,6 +91,14 @@ export default {
 
 <template>
   <div class="app">
+    <img
+      ref="logo"
+      src="/assets/robot-fix.png"
+      alt="Fix Your Vibes Logo"
+      class="logo"
+      :class="{ 'logo-inverted': logoInverted }"
+      @click="scrollToTop"
+    />
     <main class="hero">
       <h1>Your bull<span class="glitch"><span
           v-for="item in glitchText"
@@ -153,6 +190,32 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.logo {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: filter 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.logo-inverted {
+    filter: invert(1);
+  }
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
 }
 
 .hero {
@@ -260,7 +323,7 @@ export default {
 .about-section {
   position: relative;
   background: #0f0f0f;
-  padding: clamp(5rem, 8vw, 8rem) $spacing-md clamp(10rem, 15vw, 20rem);
+  padding: clamp(5rem, 8vw, 8rem) $spacing-sm clamp(10rem, 10vw, 20rem);
   min-height: auto;
 
   .journey-container {
