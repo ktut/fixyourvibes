@@ -1,0 +1,51 @@
+// Colors
+// Background colors
+$bg-primary: #ffffff;
+$bg-secondary: #f5f5f5;
+$bg-tertiary: #e8e8e8;
+$bg-hover: #d0d0d0;
+
+// Border colors
+$border-primary: #e0e0e0;
+$border-secondary: #c0c0c0;
+$border-focus: #666666;
+
+// Text colors
+$text-primary: #000000;
+$text-secondary: #666666;
+$text-tertiary: #999999;
+
+// Gradient colors (now using greys)
+$gradient-primary: linear-gradient(135deg, #666666, #888888, #999999);
+$gradient-button: linear-gradient(135deg, #666666, #888888);
+
+// Grey color values
+$color-grey-dark: #666666;
+$color-grey-medium: #888888;
+$color-grey-light: #999999;
+
+// Success colors
+$success-bg: rgba(100, 100, 100, 0.1);
+$success-text: #555555;
+$success-border: rgba(100, 100, 100, 0.3);
+
+// Error colors
+$error-bg: rgba(150, 150, 150, 0.1);
+$error-text: #666666;
+$error-border: rgba(150, 150, 150, 0.3);
+
+// Widths
+$width-hero-max: 900px;
+$width-container-max: 600px;
+
+// Border radius
+$border-radius: 8px;
+
+// Transitions
+$transition-default: all 0.3s ease;
+
+// Spacing
+$spacing-xs: 1rem;
+$spacing-sm: 1.5rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;

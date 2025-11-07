@@ -18,7 +18,7 @@ export default {
       this.submitStatus = null
 
       try {
-        const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/ramzidreessen@gmail.com'
+        const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/myzlggao'
         const response = await fetch(formspreeEndpoint, {
           method: 'POST',
           headers: {
@@ -109,82 +109,98 @@ export default {
   </section>
 </template>
 
-<style lang="sass" scoped>
-.contact-section
-  background: #111
-  padding: 4rem 2rem
-  border-top: 1px solid #222
+<style lang="scss" scoped>
+@import '../styles/variables.scss';
 
-.container
-  max-width: 600px
-  margin: 0 auto
+.contact-section {
+  background: $bg-secondary;
+  padding: $spacing-lg $spacing-md;
+  border-top: 1px solid $border-primary;
+}
 
-  h3
-    font-size: 2rem
-    font-weight: 700
-    margin-bottom: 2rem
-    text-align: center
+.container {
+  max-width: $width-container-max;
+  margin: 0 auto;
 
-.contact-form
-  display: flex
-  flex-direction: column
-  gap: 1.5rem
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    text-align: center;
+  }
+}
 
-.form-group
-  display: flex
-  flex-direction: column
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 
   input,
-  textarea
-    padding: 1rem
-    font-size: 1rem
-    background: #1a1a1a
-    border: 1px solid #333
-    border-radius: 8px
-    color: #fff
-    font-family: inherit
-    transition: all 0.3s ease
+  textarea {
+    padding: $spacing-xs;
+    font-size: 1rem;
+    background: $bg-tertiary;
+    border: 1px solid $border-secondary;
+    border-radius: $border-radius;
+    color: $text-primary;
+    font-family: inherit;
+    transition: $transition-default;
 
-    &:focus
-      outline: none
-      border-color: #ff6b6b
-      background: #222
+    &:focus {
+      outline: none;
+      border-color: $border-focus;
+      background: $bg-hover;
+    }
 
-    &::placeholder
-      color: #666
+    &::placeholder {
+      color: $text-tertiary;
+    }
+  }
+}
 
-.submit-btn
-  padding: 1rem 2rem
-  font-size: 1.1rem
-  font-weight: 600
-  background: linear-gradient(135deg, #ff6b6b, #ee5a6f)
-  color: #fff
-  border: none
-  border-radius: 8px
-  cursor: pointer
-  transition: all 0.3s ease
+.submit-btn {
+  padding: $spacing-xs $spacing-md;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: $gradient-button;
+  color: $text-primary;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: $transition-default;
 
-  &:hover:not(:disabled)
-    transform: translateY(-2px)
-    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3)
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(100, 100, 100, 0.3);
+  }
 
-  &:disabled
-    opacity: 0.6
-    cursor: not-allowed
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
 
-.status-message
-  padding: 1rem
-  border-radius: 8px
-  text-align: center
-  font-weight: 500
+.status-message {
+  padding: $spacing-xs;
+  border-radius: $border-radius;
+  text-align: center;
+  font-weight: 500;
 
-  &.success
-    background: rgba(72, 187, 120, 0.1)
-    color: #68d391
-    border: 1px solid rgba(72, 187, 120, 0.3)
+  &.success {
+    background: $success-bg;
+    color: $success-text;
+    border: 1px solid $success-border;
+  }
 
-  &.error
-    background: rgba(245, 101, 101, 0.1)
-    color: #fc8181
-    border: 1px solid rgba(245, 101, 101, 0.3)
+  &.error {
+    background: $error-bg;
+    color: $error-text;
+    border: 1px solid $error-border;
+  }
+}
 </style>
