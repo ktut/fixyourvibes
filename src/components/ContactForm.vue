@@ -173,6 +173,7 @@ export default {
   border-radius: $border-radius;
   cursor: pointer;
   transition: $transition-default;
+  color: $text-white;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
