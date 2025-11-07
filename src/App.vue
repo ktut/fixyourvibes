@@ -10,7 +10,8 @@ export default {
     return {
       animatedChars: ['$', '%', '*', '&', '!'],
       glitchText: '$$$$',
-      animationInterval: null
+      animationInterval: null,
+      glitchIndex: 0 // Track which position shows special character
     }
   },
   mounted() {
@@ -26,14 +27,17 @@ export default {
       const correctLetters = ['s', 'h', 'i', 't']
       this.animationInterval = setInterval(() => {
         this.glitchText = Array.from({ length: 4 }, (_, index) => {
-          // 25% chance to show the correct letter in its proper place
-          if (Math.random() < 0.25) {
-            return correctLetters[index]
+          // Only the position at glitchIndex shows a special character
+          // The other 3 positions show the correct letter
+          if (index === this.glitchIndex) {
+            return this.animatedChars[Math.floor(Math.random() * this.animatedChars.length)]
           }
-          // Otherwise show a random character from animatedChars
-          return this.animatedChars[Math.floor(Math.random() * this.animatedChars.length)]
+          return correctLetters[index]
         }).join('')
-      }, 400)
+
+        // Move to next position
+        this.glitchIndex = (this.glitchIndex + 1) % 4
+      }, 1000)
     }
   }
 }
@@ -82,9 +86,6 @@ export default {
     background-clip: text;
 
     .glitch {
-      font-family: 'Courier New', monospace;
-      font-weight: 900;
-      letter-spacing: 0.05em;
       display: inline-block;
       background: $gradient-primary;
       -webkit-background-clip: text;
