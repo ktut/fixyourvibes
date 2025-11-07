@@ -94,6 +94,7 @@ export default {
   text-align: center;
   max-width: $width-hero-max;
   margin: 0 auto;
+  min-height: 100vh;
   @media (min-width: 768px) {
     align-items: center;
   }
