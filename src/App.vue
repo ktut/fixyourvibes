@@ -10,8 +10,8 @@ export default {
     return {
       glitchText: [
         { char: '$', key: 0 },
-        { char: '$', key: 1 },
-        { char: '$', key: 2 }
+        { char: 'h', key: 1 },
+        { char: 'i', key: 2 }
       ],
       animationInterval: null,
       glitchIndex: 0 // Track which position shows special character
@@ -54,7 +54,7 @@ export default {
 
         // Move to next position
         this.glitchIndex = (this.glitchIndex + 1) % 3
-      }, 1000)
+      }, 3000)
     }
   }
 }
@@ -137,19 +137,19 @@ export default {
 
     @keyframes flip3d {
       0% {
-        transform: rotateX(0deg) scaleX(1);
+        transform: rotateX(0deg);
         opacity: 1;
       }
       50% {
-        transform: rotateX(90deg) scaleX(0.3);
+        transform: rotateX(90deg);
         opacity: 0;
       }
       51% {
-        transform: rotateX(90deg) scaleX(0.3);
+        transform: rotateX(-90deg);
         opacity: 0;
       }
       100% {
-        transform: rotateX(0deg) scaleX(1);
+        transform: rotateX(0deg);
         opacity: 1;
       }
     }
