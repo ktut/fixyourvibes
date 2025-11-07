@@ -8,8 +8,7 @@ export default {
   },
   data() {
     return {
-      animatedChars: ['$', '%', '*', '&', '!'],
-      glitchText: '$$$$',
+      glitchText: '$$$',
       animationInterval: null,
       glitchIndex: 0 // Track which position shows special character
     }
@@ -24,19 +23,24 @@ export default {
   },
   methods: {
     startAnimation() {
-      const correctLetters = ['s', 'h', 'i', 't']
+      const letters = [
+        { correct: 's', special: '$' },
+        { correct: 'h', special: '%' },
+        { correct: 'i', special: '!' }
+      ]
+
       this.animationInterval = setInterval(() => {
-        this.glitchText = Array.from({ length: 4 }, (_, index) => {
-          // Only the position at glitchIndex shows a special character
-          // The other 3 positions show the correct letter
+        this.glitchText = Array.from({ length: 3 }, (_, index) => {
+          // Only the position at glitchIndex shows its special character
+          // The other positions show the correct letter
           if (index === this.glitchIndex) {
-            return this.animatedChars[Math.floor(Math.random() * this.animatedChars.length)]
+            return letters[index].special
           }
-          return correctLetters[index]
+          return letters[index].correct
         }).join('')
 
         // Move to next position
-        this.glitchIndex = (this.glitchIndex + 1) % 4
+        this.glitchIndex = (this.glitchIndex + 1) % 3
       }, 1000)
     }
   }
@@ -46,7 +50,7 @@ export default {
 <template>
   <div class="app">
     <main class="hero">
-      <h1>Your bull<span class="glitch">{{ glitchText }}</span> vibe-coded app is going to break in production.</h1>
+      <h1>Your bull<span class="glitch">{{ glitchText }}</span>t vibe-coded app is going to break in production.</h1>
       <h2>We can keep that from happening.</h2>
     </main>
 
