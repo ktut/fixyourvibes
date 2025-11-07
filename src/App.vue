@@ -112,8 +112,6 @@ export default {
 
       .glitch-char {
         display: inline-block;
-        min-width: 0.5em; // Reserve space for transitions
-        text-align: center;
         animation: flip3d 0.6s ease-in-out;
         transform-style: preserve-3d;
         background: $gradient-primary;
