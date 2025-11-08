@@ -140,10 +140,7 @@ export default {
         <div class="neuro-card content-card large-card">
           <h3>Our Team</h3>
           <p>
-            Led by <a href="https://rkdvis.com" target="_blank" rel="noopener" class="team-link">Ramzi Dreessen</a>,
-            a seasoned front-end engineer and product specialist with deep expertise in AI-assisted
-            development workflows (Cursor, Claude), our multidisciplinary team brings together
-            specialized talent across the full stack. We combine front-end precision with back-end
+            We combine front-end precision with back-end
             infrastructure expertise (Java, Spring Boot, Terraform, AWS), strategic business
             consulting, and rapid development capabilities (Ruby on Rails) to deliver comprehensive
             solutions that don't just fix bugs—they transform fragile codebases into resilient,
